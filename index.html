@@ -5,195 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Min Khant Zaw | Full-Stack Developer</title>
 <meta name="description" content="Min Khant Zaw: Full-Stack Developer (React, Node.js) and QA tester based in Tampere, Finland.">
-<style>
-  :root {
-    --bg: #0f1115;
-    --bg-alt: #161920;
-    --card: #1b1f27;
-    --text: #e6e8ec;
-    --muted: #9aa3b2;
-    --accent: #5eead4;
-    --accent-2: #818cf8;
-    --border: #2a2f3a;
-    --radius: 14px;
-    --max: 1080px;
-  }
-  [data-theme="light"] {
-    --bg: #f7f8fa;
-    --bg-alt: #eef0f4;
-    --card: #ffffff;
-    --text: #1a1d23;
-    --muted: #5b6474;
-    --accent: #0d9488;
-    --accent-2: #4f46e5;
-    --border: #dfe3ea;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    transition: background .3s, color .3s;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-
-  /* Nav */
-  nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-  }
-  nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .logo { font-weight: 800; letter-spacing: 2px; color: var(--text); }
-  .logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 24px; align-items: center; list-style: none; }
-  .nav-links a { color: var(--muted); font-size: .95rem; }
-  .nav-links a:hover { color: var(--text); text-decoration: none; }
-  .theme-btn {
-    background: var(--card); border: 1px solid var(--border); color: var(--text);
-    width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1rem;
-  }
-
-  /* Hero */
-  .hero { padding: 110px 0 90px; }
-  .hero .hello { color: var(--accent); font-weight: 600; margin-bottom: 12px; }
-  .hero h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.1; letter-spacing: 1px; }
-  .hero h2 {
-    font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 500; color: var(--muted); margin: 14px 0 22px;
-  }
-  .hero h2 .grad {
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 700;
-  }
-  .hero p { max-width: 640px; color: var(--muted); font-size: 1.08rem; }
-  .cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
-  .btn {
-    display: inline-block; padding: 12px 24px; border-radius: 10px; font-weight: 600;
-    border: 1px solid var(--accent); transition: transform .15s;
-  }
-  .btn:hover { transform: translateY(-2px); text-decoration: none; }
-  .btn.primary { background: var(--accent); color: #0b0d10; }
-  .btn.ghost { color: var(--accent); }
-  .meta { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 30px; color: var(--muted); font-size: .95rem; }
-
-  /* Sections */
-  section { padding: 80px 0; }
-  section.alt { background: var(--bg-alt); }
-  .section-title { font-size: 1.9rem; margin-bottom: 8px; }
-  .section-title::after {
-    content: ""; display: block; width: 56px; height: 4px; margin-top: 10px; border-radius: 4px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  }
-  .section-sub { color: var(--muted); margin: 14px 0 40px; }
-
-  /* Stats */
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; }
-  .stat {
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 22px; text-align: center;
-  }
-  .stat strong { display: block; font-size: 2rem; color: var(--accent); }
-  .stat span { color: var(--muted); font-size: .92rem; }
-
-  /* Timeline */
-  .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--border); }
-  .job { position: relative; margin-bottom: 44px; }
-  .job:last-child { margin-bottom: 0; }
-  .job::before {
-    content: ""; position: absolute; left: -36px; top: 6px; width: 14px; height: 14px; border-radius: 50%;
-    background: var(--accent); box-shadow: 0 0 0 4px var(--bg-alt);
-  }
-  .job-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 20px; }
-  .job h3 { font-size: 1.25rem; }
-  .job .company { color: var(--accent); font-weight: 600; }
-  .job .when { color: var(--muted); font-size: .92rem; }
-  .job .where { color: var(--muted); font-size: .92rem; margin-bottom: 12px; }
-  .job ul { padding-left: 18px; color: var(--text); }
-  .job li { margin: 6px 0; }
-  .job li::marker { color: var(--accent); }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-  .tag {
-    font-size: .8rem; padding: 4px 10px; border-radius: 999px;
-    background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent);
-    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  }
-
-  /* Projects */
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
-  .card {
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 26px; transition: transform .2s, border-color .2s;
-  }
-  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
-  .card .kicker { font-size: .8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-2); font-weight: 700; }
-  .card h3 { margin: 8px 0 10px; font-size: 1.2rem; }
-  .card p { color: var(--muted); font-size: .97rem; }
-
-  /* Skills */
-  .skill-group h4 { font-size: 1rem; margin-bottom: 12px; }
-  .skill-group .tags { margin-top: 0; }
-
-  /* Education */
-  .edu .when { color: var(--muted); font-size: .92rem; margin-top: 6px; }
-  .lang-row { display: flex; justify-content: space-between; margin: 10px 0 4px; }
-  .bar { height: 8px; background: var(--border); border-radius: 8px; overflow: hidden; }
-  .bar > div { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 8px; }
-
-  /* Contact */
-  .contact { text-align: center; }
-  .contact .section-title::after { margin-left: auto; margin-right: auto; }
-  .contact p { max-width: 560px; margin: 16px auto 32px; color: var(--muted); }
-  .contact .cta { justify-content: center; }
-  .contact-links { display: flex; justify-content: center; gap: 26px; flex-wrap: wrap; margin-top: 30px; }
-
-  footer { text-align: center; padding: 30px 0; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--border); }
-
-  /* Reveal on scroll */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    html { scroll-behavior: auto; }
-  }
-
-  @media (max-width: 720px) {
-    .nav-links li:not(:last-child) { display: none; }
-    .hero { padding: 70px 0 60px; }
-    section { padding: 60px 0; }
-  }
-</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  // Apply saved theme before paint to avoid a flash
+  try { const t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
 </head>
 <body>
 
+<div class="progress" aria-hidden="true"></div>
+
 <nav>
   <div class="container">
-    <a href="#top" class="logo">MKZ<span>.</span></a>
+    <a href="#top" class="logo">MKZ<span>_</span></a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><button class="theme-btn" id="themeBtn" aria-label="Toggle light/dark theme">☀</button></li>
+      <li class="link"><a href="#about">About</a></li>
+      <li class="link"><a href="#experience">Experience</a></li>
+      <li class="link"><a href="#projects">Projects</a></li>
+      <li class="link"><a href="#skills">Skills</a></li>
+      <li class="link"><a href="#education">Education</a></li>
+      <li class="link"><a href="#contact">Contact</a></li>
+      <li class="tools">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle light/dark theme">☀</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+      </li>
     </ul>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="container">
-    <p class="hello">Hi, I'm</p>
-    <h1>Min Khant Zaw</h1>
-    <h2><span class="grad">Full-Stack Developer</span> · React, Node.js &amp; QA</h2>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="grid-bg"></div>
+
+  <div class="container intro">
+    <div><span class="badge"><span class="dot"></span>Open to full-stack &amp; QA roles</span></div>
+    <h1>Hi, I'm <span class="gradient-text">Min Khant Zaw</span> <span class="wave">👋</span></h1>
+    <h2><span class="typed" id="typed"></span><span class="caret"></span></h2>
     <p>
-      Software Engineering student at Tampere University of Applied Sciences. I build full-stack web apps
-      with AI integration and test them properly before they reach users. I've shipped production software
-      for clients in Greece and Finland.
+      Software Engineering student at <mark>Tampere University of Applied Sciences</mark>. I build
+      <mark>full-stack web apps with AI integration</mark> and test them properly before they reach users.
+      I've shipped production software for clients in Greece and Finland.
     </p>
     <div class="cta">
       <a class="btn primary" href="#contact">Get in touch</a>
@@ -205,41 +59,48 @@
       <a href="https://www.github.com/mkzaw25101999" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </div>
+  <a href="#about" class="scroll-hint" aria-label="Scroll down"></a>
 </header>
 
 <section class="alt" id="about">
-  <div class="container reveal">
-    <h2 class="section-title">About me</h2>
-    <p class="section-sub">
-      I started out in civil engineering in Yangon and moved into software. I like owning a product end to end:
-      I talk to the client, design the API, build the UI, and write the test cases that check it all works.
-    </p>
-    <div class="stats">
-      <div class="stat"><strong>10+</strong><span>WordPress sites published to from one AI platform</span></div>
-      <div class="stat"><strong>30+</strong><span>test cases run per mobile release</span></div>
-      <div class="stat"><strong>15+</strong><span>user stories delivered in Scrum sprints</span></div>
-      <div class="stat"><strong>3</strong><span>languages spoken: Burmese, English, Finnish</span></div>
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-title"><span class="num">01.</span>About me</h2>
+      <p class="section-sub">
+        I started out in civil engineering in Yangon and moved into software. I like owning a product end to end:
+        I talk to the client, design the API, build the UI, and write the test cases that check it all works.
+      </p>
+    </div>
+    <div class="stats stagger">
+      <div class="stat"><strong data-count="10" data-suffix="+">0</strong><span>WordPress sites published to from one AI platform</span></div>
+      <div class="stat"><strong data-count="30" data-suffix="+">0</strong><span>test cases run per mobile release</span></div>
+      <div class="stat"><strong data-count="15" data-suffix="+">0</strong><span>user stories delivered in Scrum sprints</span></div>
+      <div class="stat"><strong data-count="3">0</strong><span>languages spoken: Burmese, English, Finnish</span></div>
     </div>
   </div>
 </section>
 
 <section id="experience">
-  <div class="container reveal">
-    <h2 class="section-title">Work experience</h2>
-    <p class="section-sub">Internships in full-stack development, QA and game development.</p>
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-title"><span class="num">02.</span>Work experience</h2>
+      <p class="section-sub">Internships in full-stack development, QA and game development.</p>
+    </div>
 
     <div class="timeline">
-      <div class="job">
+      <div class="timeline-fill"></div>
+
+      <div class="job current reveal">
         <div class="job-head">
           <h3>Full-Stack Developer · <span class="company">The Factory Music Group</span></h3>
-          <span class="when">Feb 2026 – Present · Internship</span>
+          <span class="when">Feb 2026 – Present</span>
         </div>
-        <p class="where">Athens, Greece (Remote)</p>
+        <p class="where">Athens, Greece (Remote) · Internship</p>
         <ul>
-          <li>Built an AI publishing platform that posts articles to 10+ client WordPress sites at once</li>
+          <li>Built an AI publishing platform that posts articles to <span class="hl">10+ client WordPress sites</span> at once</li>
           <li>Owned the full stack: React, Node.js, Express, MongoDB, REST APIs</li>
-          <li>Integrated an AI model (DeepSeek) with custom writing prompts for each site</li>
-          <li>Secured the app with AES-256 encryption, route authentication and role-based access</li>
+          <li>Integrated an AI model (<span class="hl">DeepSeek</span>) with custom writing prompts for each site</li>
+          <li>Secured the app with <span class="hl">AES-256 encryption</span>, route authentication and role-based access</li>
           <li>Built an image processing pipeline (Sharp) for automatic thumbnails and watermarks</li>
           <li>Added responsive design and SEO metadata to every published article</li>
           <li>Fixed production issues across client sites and handled deployment on Hostinger</li>
@@ -251,16 +112,16 @@
         </div>
       </div>
 
-      <div class="job">
+      <div class="job reveal">
         <div class="job-head">
           <h3>QA Tester (Mobile &amp; Web) · <span class="company">Superhood Oy</span></h3>
-          <span class="when">Jul 2026 – Oct 2026 · Internship</span>
+          <span class="when">Jul 2026 – Oct 2026</span>
         </div>
-        <p class="where">Finland (Remote)</p>
+        <p class="where">Finland (Remote) · Internship</p>
         <ul>
-          <li>Ran 30+ test cases on iOS and Android builds before each production release</li>
-          <li>Signed off the referral system for production: all 9/9 test cases passed</li>
-          <li>Tested an AI feature across 21 cases and 5 languages, including offline and edge cases</li>
+          <li>Ran <span class="hl">30+ test cases</span> on iOS and Android builds before each production release</li>
+          <li>Signed off the referral system for production: <span class="hl">all 9/9 test cases passed</span></li>
+          <li>Tested an AI feature across <span class="hl">21 cases and 5 languages</span>, including offline and edge cases</li>
           <li>Found and re-tested critical bugs on web and mobile, working directly with developers</li>
           <li>Measured page load and API performance with Chrome DevTools</li>
           <li>Wrote structured bug reports (steps, expected vs. actual) for every build</li>
@@ -271,15 +132,15 @@
         </div>
       </div>
 
-      <div class="job">
+      <div class="job reveal">
         <div class="job-head">
           <h3>Game Developer Intern · <span class="company">OutLoud Oy</span></h3>
-          <span class="when">May 2025 · Summer internship</span>
+          <span class="when">May 2025</span>
         </div>
-        <p class="where">Tampere, Finland</p>
+        <p class="where">Tampere, Finland · Summer internship</p>
         <ul>
-          <li>Shipped a Unity mini-game for the Wanderwild platform in an Agile/Scrum team</li>
-          <li>Delivered 15+ user stories within sprint deadlines</li>
+          <li>Shipped a <span class="hl">Unity mini-game</span> for the Wanderwild platform in an Agile/Scrum team</li>
+          <li>Delivered <span class="hl">15+ user stories</span> within sprint deadlines</li>
           <li>Took part in daily stand-ups, code reviews and sprint retrospectives</li>
         </ul>
         <div class="tags">
@@ -291,11 +152,15 @@
 </section>
 
 <section class="alt" id="projects">
-  <div class="container reveal">
-    <h2 class="section-title">Featured work</h2>
-    <p class="section-sub">Highlights from my work experience.</p>
-    <div class="grid">
-      <div class="card">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-title"><span class="num">03.</span>Featured work</h2>
+      <p class="section-sub">Highlights from my work experience.</p>
+    </div>
+    <div class="grid stagger">
+      <div class="card featured">
+        <span class="ribbon">FEATURED</span>
+        <div class="icon">🤖</div>
         <div class="kicker">Full-stack · AI</div>
         <h3>AI Multi-Site Publishing Platform</h3>
         <p>
@@ -303,9 +168,10 @@
           publishes them to 10+ WordPress sites at once. Includes AES-256 encryption, role-based access, SEO
           metadata and automatic image thumbnails and watermarks.
         </p>
-        <div class="tags"><span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">LLM APIs</span></div>
+        <div class="tags"><span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">LLM APIs</span><span class="tag">Sharp</span></div>
       </div>
       <div class="card">
+        <div class="icon">📱</div>
         <div class="kicker">QA · Mobile</div>
         <h3>Release Testing for a Mobile App</h3>
         <p>
@@ -315,6 +181,7 @@
         <div class="tags"><span class="tag">Test design</span><span class="tag">TestFlight</span><span class="tag">Bug reporting</span></div>
       </div>
       <div class="card">
+        <div class="icon">🎮</div>
         <div class="kicker">Game dev</div>
         <h3>Wanderwild Mini-Game</h3>
         <p>
@@ -328,36 +195,38 @@
 </section>
 
 <section id="skills">
-  <div class="container reveal">
-    <h2 class="section-title">Skills</h2>
-    <p class="section-sub">What I use day to day.</p>
-    <div class="grid">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-title"><span class="num">04.</span>Skills</h2>
+      <p class="section-sub">What I use day to day.</p>
+    </div>
+    <div class="grid stagger">
       <div class="card skill-group">
-        <h4>Languages</h4>
+        <h4>💬 Languages</h4>
         <div class="tags"><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">SQL</span></div>
       </div>
       <div class="card skill-group">
-        <h4>Web Development</h4>
+        <h4>🌐 Web Development</h4>
         <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">REST APIs</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
       </div>
       <div class="card skill-group">
-        <h4>Databases</h4>
+        <h4>🗄️ Databases</h4>
         <div class="tags"><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span></div>
       </div>
       <div class="card skill-group">
-        <h4>AI Integration</h4>
+        <h4>🧠 AI Integration</h4>
         <div class="tags"><span class="tag">LLM APIs (DeepSeek)</span><span class="tag">Prompt design</span></div>
       </div>
       <div class="card skill-group">
-        <h4>Testing &amp; QA</h4>
+        <h4>🧪 Testing &amp; QA</h4>
         <div class="tags"><span class="tag">Manual testing</span><span class="tag">Regression testing</span><span class="tag">Test case design</span><span class="tag">Bug reporting</span><span class="tag">TestFlight</span><span class="tag">Chrome DevTools</span><span class="tag">pytest</span></div>
       </div>
       <div class="card skill-group">
-        <h4>Tools &amp; Ways of Working</h4>
+        <h4>🛠️ Tools &amp; Ways of Working</h4>
         <div class="tags"><span class="tag">Git/GitHub</span><span class="tag">Linux</span><span class="tag">Unity</span><span class="tag">Hostinger</span><span class="tag">Agile/Scrum</span></div>
       </div>
       <div class="card skill-group">
-        <h4>Soft Skills</h4>
+        <h4>🤝 Soft Skills</h4>
         <div class="tags"><span class="tag">Problem solving</span><span class="tag">Teamwork</span><span class="tag">Client communication</span></div>
       </div>
     </div>
@@ -365,36 +234,42 @@
 </section>
 
 <section class="alt" id="education">
-  <div class="container reveal">
-    <h2 class="section-title">Education &amp; languages</h2>
-    <p class="section-sub">&nbsp;</p>
-    <div class="grid">
-      <div class="card edu">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-title"><span class="num">05.</span>Education &amp; languages</h2>
+      <p class="section-sub">From civil engineering to software engineering.</p>
+    </div>
+    <div class="grid stagger">
+      <div class="card">
+        <div class="icon">🎓</div>
         <div class="kicker">2023 – Dec 2026 (Expected)</div>
         <h3>Bachelor of Software Engineering</h3>
         <p>Tampere University of Applied Sciences (TAMK)</p>
       </div>
-      <div class="card edu">
+      <div class="card">
+        <div class="icon">🏗️</div>
         <div class="kicker">2018 – 2022</div>
         <h3>Higher National Diploma in Civil Engineering</h3>
         <p>City University Yangon</p>
       </div>
       <div class="card">
+        <div class="icon">🗣️</div>
         <div class="kicker">Languages</div>
-        <div class="lang-row"><span>Burmese</span><span style="color:var(--muted)">Native</span></div>
-        <div class="bar"><div style="width:100%"></div></div>
-        <div class="lang-row"><span>English</span><span style="color:var(--muted)">Excellent</span></div>
-        <div class="bar"><div style="width:90%"></div></div>
-        <div class="lang-row"><span>Finnish</span><span style="color:var(--muted)">Advanced beginner</span></div>
-        <div class="bar"><div style="width:35%"></div></div>
+        <div class="lang-row"><span>Burmese</span><span>Native</span></div>
+        <div class="bar"><div data-width="100%"></div></div>
+        <div class="lang-row"><span>English</span><span>Excellent</span></div>
+        <div class="bar"><div data-width="90%"></div></div>
+        <div class="lang-row"><span>Finnish</span><span>Advanced beginner</span></div>
+        <div class="bar"><div data-width="35%"></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="contact" class="contact">
+  <div class="blob b1" style="top:auto;bottom:-200px;right:-150px;opacity:.18"></div>
   <div class="container reveal">
-    <h2 class="section-title">Let's work together</h2>
+    <h2 class="section-title"><span class="num">06.</span>Let's work together</h2>
     <p>
       I'm looking for full-stack and QA roles in Finland or remote. If you're hiring or have a project in mind,
       send me a message.
@@ -404,39 +279,20 @@
       <a class="btn ghost" href="https://www.linkedin.com/in/minzaw" target="_blank" rel="noopener">Connect on LinkedIn</a>
     </div>
     <div class="contact-links">
-      <a href="mailto:khantzawkz23@gmail.com">✉ khantzawkz23@gmail.com</a>
+      <span>✉ khantzawkz23@gmail.com <button class="copy-btn" data-copy="khantzawkz23@gmail.com" aria-label="Copy email">⧉ copy</button></span>
       <a href="https://www.github.com/mkzaw25101999" target="_blank" rel="noopener">⌨ github.com/mkzaw25101999</a>
-      <span style="color:var(--muted)">📍 Tampere, Finland</span>
+      <span>📍 Tampere, Finland</span>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">© <span id="year"></span> Min Khant Zaw</div>
+  <div class="container">© <span id="year"></span> Min Khant Zaw · Built with <span class="heart">♥</span> HTML, CSS &amp; JS</div>
 </footer>
 
-<script>
-  // Theme toggle (remembers choice)
-  const root = document.documentElement;
-  const btn = document.getElementById('themeBtn');
-  const saved = localStorage.getItem('theme');
-  if (saved) root.setAttribute('data-theme', saved);
-  const syncIcon = () => { btn.textContent = root.getAttribute('data-theme') === 'light' ? '☾' : '☀'; };
-  syncIcon();
-  btn.addEventListener('click', () => {
-    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    syncIcon();
-  });
+<button class="to-top" aria-label="Back to top">↑</button>
+<div class="toast" role="status" aria-live="polite"></div>
 
-  // Reveal sections on scroll
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
